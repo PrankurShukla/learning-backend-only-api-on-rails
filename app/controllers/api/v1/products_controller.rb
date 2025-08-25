@@ -40,6 +40,6 @@ class Api::V1::ProductsController < ApplicationController
 
     def product_params
         #strong params-> only allow whitelisted fiels
-        params.require(:product).permit(:name,:price,:published)
+        params.require(:product).permit(:name,:price,:published,:category_id)
     end
 end

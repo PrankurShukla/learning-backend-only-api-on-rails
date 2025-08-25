@@ -1,5 +1,6 @@
-class Api::V1::ProductsController < ApplicationController
-        before_action :set_category, only: [:show, :update, :destroy]
+class Api::V1::CategoriesController < ApplicationController
+
+    before_action :set_category, only: [:show, :update, :destroy]
 
       # GET /api/v1/categories
       def index
@@ -47,5 +48,3 @@ class Api::V1::ProductsController < ApplicationController
         params.require(:category).permit(:name)
       end
     end
-  end
-end
