@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
-  private
 
-  def authorize_request
+private
+    def authorize_request
     header = request.headers["Authorization"]
     token  = header.split(" ").last if header&.start_with?("Bearer ")
     decoded = JsonWebToken.decode(token)
