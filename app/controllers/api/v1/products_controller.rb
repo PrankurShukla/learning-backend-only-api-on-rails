@@ -1,4 +1,5 @@
 class Api::V1::ProductsController < ApplicationController
+    before_action :set_product, only: [:show, :update, :destroy]
     #GET /api/v1/products
     def index
         products = Product.all
@@ -37,6 +38,11 @@ class Api::V1::ProductsController < ApplicationController
         product.destroy
         head :no_content
     end
+
+    def set_product
+        @product = Product.find(params[:id])
+    end
+
 
     def product_params
         #strong params-> only allow whitelisted fiels
