@@ -4,8 +4,13 @@ class Api::V1::ProductsController < ApplicationController
 
     #GET /api/v1/products
     def index
-        products = Product.all
-        render json: products
+    products = Product.page(params[:page]).per(params[:per_page] || 10)
+    render json: {
+        current_page: products.current_page,
+        total_pages: products.total_pages,
+        total_count: products.total_count,
+        products: products
+    }
     end
 
     #GET /api/v1/products/:id
