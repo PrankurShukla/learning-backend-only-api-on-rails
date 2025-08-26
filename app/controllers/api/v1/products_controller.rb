@@ -18,14 +18,18 @@ class Api::V1::ProductsController < ApplicationController
     #GET /api/v1/products/:id
     def show
         product = Product.find(params[:id])
-        render json: product
+        render json: product_json(product)
     end
 
     # POST /api/v1/products
     def create 
         product = Product.new(product_params)
+        if params[:image].present?
+            product.image.attach(params[:image]) if params[:image].present?
+        end
+
         if product.save
-            render json: product, status: :created
+            render json: product_json(product), status: :created
         else
             render json: {errors: product.errors.full_messages}, status: :unprocessable_entity  
         end
@@ -55,7 +59,7 @@ class Api::V1::ProductsController < ApplicationController
 
     def product_params
         #strong params-> only allow whitelisted fiels
-        params.require(:product).permit(:name,:price,:published,:category_id,:image)
+        params.permit(:name,:price,:published,:category_id,:image,:description)
     end
 
 def product_json(product)
@@ -65,7 +69,7 @@ def product_json(product)
       price: product.price,
       description: product.description,
       category_id: product.category_id,
-      image_url: product.image_url
+      image_url: product.image.attached? ? url_for(product.image) : nil
     }
   end
 

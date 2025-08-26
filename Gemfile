@@ -49,5 +49,6 @@ group :development, :test do
   gem "jwt", "~> 2.9"
   gem "kaminari"
   gem "cloudinary"
+  gem "activestorage-cloudinary-service"
 
 end
