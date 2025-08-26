@@ -1,5 +1,7 @@
 class Api::V1::ProductsController < ApplicationController
     before_action :set_product, only: [:show, :update, :destroy]
+    before_action :authorize_admin, only: [:create, :update, :destroy]
+
     #GET /api/v1/products
     def index
         products = Product.all

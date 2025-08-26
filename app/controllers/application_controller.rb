@@ -13,4 +13,11 @@ private
       render json: { error: "Invalid or expired token" }, status: :unauthorized
     end
   end
+
+  def authorize_admin
+    unless @current_user&.admin?
+      render json: { error: "Forbidden - Admins only" }, status: :forbidden
+    end
+  end
+
 end
