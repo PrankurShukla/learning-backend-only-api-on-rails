@@ -46,7 +46,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem "bcrypt", "~> 3.1"
-  gem "jwt", "~> 2.9"
+  gem "jwt", "~> 3.1"
   gem "kaminari"
   gem "cloudinary"
   gem "activestorage-cloudinary-service"
